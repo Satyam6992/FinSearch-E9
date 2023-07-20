@@ -1,0 +1,43 @@
+# Monte Carlo Option Pricing for European Call Options (Log Version)
+
+import math
+import numpy as np
+from time import time
+
+# Set random seed for reproducibility
+np.random.seed(20000)
+
+# Record the starting time for execution time measurement
+t0 = time()
+
+# Option Parameters
+initial_stock_price = 100
+strike_price = 105
+time_to_maturity = 1.0
+risk_free_rate = 0.05
+volatility = 0.2
+
+# Number of time steps and simulations
+num_steps = 50
+num_simulations = 250000
+
+# Simulating stock price paths using geometric Brownian motion
+time_step = time_to_maturity / num_steps
+drift = risk_free_rate - 0.5 * volatility ** 2
+price_matrix = initial_stock_price * np.exp(
+    np.cumsum((drift * time_step) + (volatility * np.sqrt(time_step) *
+    np.random.standard_normal((num_steps + 1, num_simulations))), axis=0)
+)
+price_matrix[0] = initial_stock_price
+
+# Calculating the Monte Carlo estimator for European call option value
+discount_factor = math.exp(-risk_free_rate * time_to_maturity)
+payoff_at_maturity = np.maximum(price_matrix[-1] - strike_price, 0)
+call_option_value = discount_factor * np.sum(payoff_at_maturity) / num_simulations
+
+# Execution time measurement
+execution_time = time() - t0
+
+# Results output
+print('The European Call Option Value is: ', call_option_value)
+print('The Execution Time is: ', execution_time)
