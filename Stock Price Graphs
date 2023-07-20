@@ -1,0 +1,16 @@
+# Monte Carlo Simulation for Option Pricing - Plotting Stock Price Paths
+
+import matplotlib.pyplot as plt
+
+# Plot the first 10 simulated stock price paths
+plt.plot(stock_prices[:, :10])
+
+# Add a grid to the plot for better readability
+plt.grid(True)
+
+# Set labels for the x-axis and y-axis
+plt.xlabel('Time Steps')
+plt.ylabel('Stock Price')
+
+# Display the plot
+plt.show()
