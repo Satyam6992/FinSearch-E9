@@ -1,0 +1,26 @@
+# Monte Carlo Option Pricing - Histogram of Option Intrinsic Values
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Set the figure size for the plot
+plt.rcParams["figure.figsize"] = (15, 8)
+
+# Calculate the option's intrinsic values at expiration
+intrinsic_values = np.maximum(final_stock_prices - strike_price, 0)
+
+# Create a histogram of the option's intrinsic values
+plt.hist(intrinsic_values, bins=50)
+
+# Add a grid to the plot for better readability
+plt.grid(True)
+
+# Set labels for the x-axis and y-axis
+plt.xlabel('Option Intrinsic Value')
+plt.ylabel('Frequency')
+
+# Set the y-axis limits for better visualization
+plt.ylim(0, 50000)
+
+# Display the plot
+plt.show()
