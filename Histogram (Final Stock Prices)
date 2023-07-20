@@ -1,0 +1,19 @@
+# Monte Carlo Option Pricing - Histogram of Final Stock Prices
+
+import matplotlib.pyplot as plt
+
+# Set the figure size for the plot
+plt.rcParams["figure.figsize"] = (15, 8)
+
+# Create a histogram of the final stock prices
+plt.hist(final_stock_prices, bins=50)
+
+# Add a grid to the plot for better readability
+plt.grid(True)
+
+# Set labels for the x-axis and y-axis
+plt.xlabel('Final Stock Price')
+plt.ylabel('Frequency')
+
+# Display the plot
+plt.show()
